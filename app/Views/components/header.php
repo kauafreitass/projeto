@@ -71,8 +71,8 @@
         <?php
         if ($_SESSION['auth'] == 'authenticated') {
             echo '
-        <a href="#"><img src="images/logo.jpg" alt="Foto de perfil" class="profile-photo"></a>
-        <a href="#"><i class="fa-solid fa-door-closed" style="color: #ffffff;"></i> Sair</a>
+        <a href="dashboard"><img src="images/logo.jpg" alt="Foto de perfil" class="profile-photo"></a>
+        <a href="logout"><i class="fa-solid fa-door-closed" style="color: #ffffff;"></i> Sair</a>
         ';
         } else {
             echo "

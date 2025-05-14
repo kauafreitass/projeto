@@ -39,7 +39,7 @@ class AuthModel
 
             $_SESSION['user'] = $user;
             $_SESSION['authenticated'] = 'authenticatedWithGoogle';
-            var_dump($user);
+            header("Location: dashboard");
         }
 
 
@@ -61,4 +61,30 @@ class AuthModel
         $stmt->execute();
 
     }
+
+    public function login($email, $password)
+    {
+        $sql = "SELECT id, email, password FROM users WHERE email = :email";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['email' => $email]);
+        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        if (!$user) {
+            exit();
+        } else {
+            if (password_verify($password, $user['password'])) {
+                $sql = "SELECT id, name, email, gender, birthdate, picture FROM users WHERE email = :email";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->bindParam(':email', $email);
+                $stmt->execute();
+
+                $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+                $_SESSION['user'] = $user;
+                $_SESSION['auth'] = 'authenticated';
+            }
+        }
+    }
+
+
 }

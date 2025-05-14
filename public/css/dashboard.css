@@ -68,6 +68,30 @@ nav a {
     height: 20px;
 }
 
+.edit-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.btn-edit {
+    background-color: #8B5CF6;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 12px;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-edit:hover {
+    transform: scale(1.05);
+}
+
 footer {
     background-color: #5b4bbe;
     color: white;

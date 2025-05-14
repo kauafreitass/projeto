@@ -1,16 +1,25 @@
 <?php
 
+use App\Controllers\AuthController;
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+    $controller = new AuthController();
+    $controller->login($_POST['email'], $_POST['password']);;
+    header("Location: dashboard");
+}
+
+
 $client = new Google\Client();
 
 $client->setClientId("975261131313-3oq9148p7hs3pvvnjqc63tmpu1nn3f5r.apps.googleusercontent.com");
 $client->setClientSecret("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");
-$client->setRedirectUri('http://localhost/projetovida/public/redirect');
+$client->setRedirectUri('http://localhost/projeto/public/redirect');
 
 $client->addScope("email");
 $client->addScope("profile");
 
 $url = $client->createAuthUrl();
-
 ?>
 
 <!doctype html>
@@ -21,7 +30,7 @@ $url = $client->createAuthUrl();
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="<?= asset('css/auth.css'); ?>">
-    <title><?=$title?></title>
+    <title><?= $title ?></title>
 </head>
 <body>
 
@@ -40,7 +49,7 @@ $url = $client->createAuthUrl();
             </div>
 
             <div class="card-form">
-                <form action="#" class="card-form-group">
+                <form action="login" method="post" class="card-form-group">
                     <div class="input-group">
                         <label for="email">E-mail</label>
                         <input type="email" name="email" id="email" placeholder="Digite seu e-mail aqui">

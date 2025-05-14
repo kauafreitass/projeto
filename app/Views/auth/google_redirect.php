@@ -9,7 +9,7 @@ $client = new Google\Client();
 
 $client->setClientId("975261131313-3oq9148p7hs3pvvnjqc63tmpu1nn3f5r.apps.googleusercontent.com");
 $client->setClientSecret("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");
-$client->setRedirectUri('http://localhost/projetovida/public/redirect');
+$client->setRedirectUri('http://localhost/projeto/public/redirect');
 
 if (!isset($_GET['code'])) {
     exit("Tentativa de login falhou");

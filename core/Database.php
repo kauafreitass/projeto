@@ -22,7 +22,10 @@ class Database
             $this->pdo = new PDO("mysql:host=" . $this->servername . ";dbname=" . $this->db_name, $this->username, $this->password);
             $this->pdo->exec("set names utf8");
         } catch (PDOException $exception) {
-            echo "Connection error: " . $exception->getMessage();
+            // Logar o erro
+            error_log("Connection error: " . $exception->getMessage(), 3, '/path/to/logs/error.log');
+            // Exibir uma mensagem genérica
+            echo "Ocorreu um erro ao conectar ao banco de dados. Tente novamente mais tarde.";
         }
 
         return $this->pdo;

@@ -27,9 +27,11 @@ Router::get('/forgot-password', [App\Controllers\AuthController::class, 'showFor
 
 Router::get('/redirect', [App\Controllers\AuthController::class, 'showGoogleRedirect']);
 
-Router::get('/logout', [App\Controllers\AuthController::class, 'logout']);
+Router::get('/logout', [App\Controllers\AuthController::class, 'showLogout']);
 
 // Dashboard
 
 Router::get('/dashboard', ['App\Controllers\DashboardController', 'index']);
+
+Router::get('/profile/edit', ['App\Controllers\ProfileController', 'edit']);;
 

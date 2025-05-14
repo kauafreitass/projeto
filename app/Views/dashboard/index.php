@@ -1,6 +1,18 @@
 <?php
 include 'data.php';
+$controller = new \App\Controllers\DashboardController();
+$user = $controller->getUserInfo($_SESSION['user']['id']);
 
+switch ($user['gender']) {
+    case 'male':
+        $user['gender'] = 'Masculino';
+        break;
+    case 'female':
+        $user['gender'] = 'Feminino';
+        break;
+    case 'not-say':
+        $user['gender'] = "Não informado";
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -15,11 +27,13 @@ include 'data.php';
 <main class="container">
     <section class="left-column">
         <div class="card profile">
-            <img src="<?= $usuario['foto-perfil'] ?? ''; ?>" alt="Foto de Perfil" height="100px" width="100px">
-            <h2><?= $usuario['nome'] ?></h2>
-            <p>Idade: <?= $usuario['idade'] ?> anos</p>
-            <p>Escolaridade: <?= $usuario['escolaridade'] ?></p>
-            <p>Cidade: <?= $usuario['cidade'] ?></p>
+            <img src="<?= $user['picture']; ?>" alt="Foto de Perfil" height="100px" width="100px">
+            <h2><?= ucwords($user['name']) ?></h2>
+            <p><strong>Data de nascimento:</strong> <?= $user['birthdate'] ?? "00/00/0000" ?></p>
+            <p><strong>Gênero:</strong> <?= $user['gender'] ?? "Não informado" ?></p>
+            <div class="edit-btn-container"><a href="profile/edit">
+                    <button class="btn-edit"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
+                </a></div>
         </div>
 
         <div class="card">

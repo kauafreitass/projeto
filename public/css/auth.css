@@ -6,7 +6,6 @@
     font-family: Poppins, sans-serif;
     box-sizing: border-box;
     text-decoration: none;
-    overflow-x: hidden;
 }
 
 body {
@@ -22,7 +21,7 @@ body {
     display: flex;
     justify-content: center;
     padding: 24px;
-    height: 25vh;
+    height: 20vh;
 }
 
 .header-title {
@@ -38,7 +37,7 @@ body {
     display: flex;
     justify-content: center;
     align-content: center;
-    height: 75vh;
+    height: 80vh;
     background: transparent;
 }
 
