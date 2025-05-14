@@ -1,0 +1,77 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: #f3efff;
+    color: #333;
+}
+
+header {
+    background-color: white;
+    padding: 20px;
+    border-bottom: 2px solid #e0d4ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    color: #5b4bbe;
+}
+
+header h1 span {
+    color: #bdaaff;
+}
+
+nav a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #5b4bbe;
+}
+
+.container {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+}
+
+.left-column, .right-column {
+    flex: 1;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    min-height: 110px;
+}
+
+.profile img {
+    border-radius: 50%;
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    background-color: #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress-bar div {
+    background-color: #5b4bbe;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    height: 20px;
+}
+
+footer {
+    background-color: #5b4bbe;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}

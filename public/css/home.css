@@ -1,0 +1,99 @@
+@import 'root.css';
+
+main {
+    margin-top: 64px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+}
+
+.container:last-child {
+    margin-bottom: 100px;
+}
+
+.container-content {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    width: 100vw;
+}
+
+.container-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    padding: 8px;
+    font-size: 24px;
+    color: #2E1065;
+}
+
+.container-photo {
+    height: 200px;
+    border-radius: 50%;
+}
+
+.container-description {
+    color: #656565;
+    width: 500px;
+}
+
+.separator-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+}
+
+.separator-line {
+    margin: 60px;
+    width: 50%;
+    height: 1px;
+    background: #7C3AED;
+}
+
+.personality-box {
+    background-color: #F6F6F6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 980px;
+    padding: 24px;
+    border-radius: 8px;
+
+    height: 400px;
+}
+
+.personality-title {
+    color: #2E1065;
+    text-align: start;
+    width: 100%;
+}
+
+.personality-button {
+    border: none;
+    background-color: #2E1065;
+    padding: 12px;
+    color: white;
+    border-radius: 12px;
+    font-size: 20px;
+    width: 200px;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.2s;
+}
+
+.personality-button:hover {
+    transform: scale(1.05);
+}
+
+.personality-link a{
+    display: flex;
+    padding: 12px;
+}
