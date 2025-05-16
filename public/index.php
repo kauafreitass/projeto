@@ -6,6 +6,9 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Controllers\HomeController;
 use App\Controllers\AuthController;
+use App\Controllers\DashboardController;
+use App\Controllers\ProfileController;
+use App\Controllers\PersonalityController;
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -16,22 +19,26 @@ spl_autoload_register(function ($class) {
 
 
 Router::get('/', [HomeController::class, 'index']);
-
+Router::get('/home', [HomeController::class, 'index']);
 // Auth
 
-Router::get('/login', [App\Controllers\AuthController::class, 'showLogin']);
+Router::get('/login', [AuthController::class, 'showLogin']);
 
-Router::get('/register', [App\Controllers\AuthController::class, 'showRegister']);
+Router::get('/register', [AuthController::class, 'showRegister']);
 
-Router::get('/forgot-password', [App\Controllers\AuthController::class, 'showForgotPassword']);
+Router::get('/forgot-password', [AuthController::class, 'showForgotPassword']);
 
-Router::get('/redirect', [App\Controllers\AuthController::class, 'showGoogleRedirect']);
+Router::get('/redirect', [AuthController::class, 'showGoogleRedirect']);
 
-Router::get('/logout', [App\Controllers\AuthController::class, 'showLogout']);
+Router::get('/logout', [AuthController::class, 'showLogout']);
 
 // Dashboard
 
-Router::get('/dashboard', ['App\Controllers\DashboardController', 'index']);
+Router::get('/dashboard', [DashboardController::class, 'index']);
 
-Router::get('/profile/edit', ['App\Controllers\ProfileController', 'edit']);;
+Router::get('/profile/edit', [ProfileController::class, 'edit']);;
+
+// Personality
+
+Router::get('/personality', [PersonalityController::class, 'index']);;
 

@@ -1,11 +1,4 @@
 <?php
-$usuario = [
-    'nome' => 'João Silva',
-    'idade' => 17,
-    'escolaridade' => 'Ensino Médio',
-    'cidade' => 'São Paulo'
-];
-
 $progresso = 90; // %
 
 $tarefas = [

@@ -15,10 +15,15 @@ class ProfileController
         $this->model = new ProfileModel();
     }
 
-    public function edit() {
+    public function edit(): void
+    {
         view('profile/index', [
             'title' =>  'Editar perfil'
         ]);
     }
+    public function update($avatar, $name, $email, $password, $gender, $birthdate): array
+    {
+        return $this->model->update($avatar, $name, $email, $password, $gender, $birthdate);
+}
 
 }

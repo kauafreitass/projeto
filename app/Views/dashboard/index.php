@@ -13,6 +13,11 @@ switch ($user['gender']) {
     case 'not-say':
         $user['gender'] = "Não informado";
 }
+if (empty($user['picture'])) {
+    $picture = asset("images/logo.jpg");
+} else {
+    $picture = $user['picture'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -27,7 +32,7 @@ switch ($user['gender']) {
 <main class="container">
     <section class="left-column">
         <div class="card profile">
-            <img src="<?= $user['picture']; ?>" alt="Foto de Perfil" height="100px" width="100px">
+            <img src="<?= $picture ?>" alt="Foto de Perfil" height="100px" width="100px">
             <h2><?= ucwords($user['name']) ?></h2>
             <p><strong>Data de nascimento:</strong> <?= $user['birthdate'] ?? "00/00/0000" ?></p>
             <p><strong>Gênero:</strong> <?= $user['gender'] ?? "Não informado" ?></p>

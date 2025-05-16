@@ -1,3 +1,22 @@
+<?php
+if(isset($_SESSION['user'])) {
+    $controller = new \App\Controllers\DashboardController();
+    $user = $controller->getUserInfo($_SESSION['user']['id']);
+}
+if (empty($user['picture'])) {
+    $picture = "images/logo.jpg";
+} else {
+    $picture = $user['picture'];
+}
+
+if (!is_link($picture)) {
+    $picture = asset($picture);
+}
+$dashboard = asset("dashboard");
+$logout = asset("logout");
+$login = asset("login");
+?>
+
 <style>
     header {
         background-color: #2E1065;
@@ -5,6 +24,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        height: 130px;
     }
 
     .header-title {
@@ -39,7 +59,10 @@
     }
 
     .profile-photo {
+        background-color: #ffffff;
+        border: 2px solid #bdaaff;
         height: 40px;
+        aspect-ratio: 1/1;
         border-radius: 50%;
     }
 
@@ -49,7 +72,7 @@
 </style>
 
 <header>
-    <a href="<?= asset('index.php'); ?>" class="logo-link">
+    <a href="<?= asset("home");?>" class="logo-link">
         <div class="header-title">
             <p>Projeto</p>
             <p>de vida</p>
@@ -62,7 +85,7 @@
         </div>
         <div>
 
-            <a href="#"><i class="fa-solid fa-share-nodes" style="color: #ffffff;"></i> Teste de personalidade</a>
+            <a href="personality"><i class="fa-solid fa-share-nodes" style="color: #ffffff;"></i> Teste de personalidade</a>
         </div>
         <div>
 
@@ -70,13 +93,13 @@
         </div>
         <?php
         if ($_SESSION['auth'] == 'authenticated') {
-            echo '
-        <a href="dashboard"><img src="images/logo.jpg" alt="Foto de perfil" class="profile-photo"></a>
-        <a href="logout"><i class="fa-solid fa-door-closed" style="color: #ffffff;"></i> Sair</a>
-        ';
+            echo "
+        <a href='$dashboard'><img src='$picture' alt='Foto de perfil' class='profile-photo'></a>
+        <a href='$logout'><i class='fa-solid fa-door-closed' style='color: #ffffff;'></i> Sair</a>
+        ";
         } else {
             echo "
-            <a href='login'><i class='fa-solid fa-door-open' style='color: #ffffff;'></i> Entrar</a>
+            <a href='$login'><i class='fa-solid fa-door-open' style='color: #ffffff;'></i> Entrar</a>
             ";
         }
         ?>

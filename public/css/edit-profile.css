@@ -1,33 +1,100 @@
-.form-group {
-    margin-bottom: 15px;
+@import 'root.css';
+
+.edit-profile-container {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
 }
 
-.form-group label {
+.edit-profile-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.06);
+}
+
+.edit-profile-card h2 {
+    color: #5b4bbe;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.edit-profile-card label {
     display: block;
-    margin-bottom: 6px;
+    margin-top: 15px;
+    margin-bottom: 5px;
     font-weight: bold;
     color: #5b4bbe;
 }
 
-.form-group input {
+.edit-profile-card input[type="text"],
+.edit-profile-card input[type="email"],
+.edit-profile-card input[type="password"],
+.edit-profile-card input[type="file"],
+.edit-profile-card input[type="date"]
+{
     width: 100%;
     padding: 10px;
-    border: 1px solid #d0c4ff;
+    border: 1px solid #dcd0ff;
     border-radius: 8px;
     font-size: 16px;
+    margin-bottom: 5px;
 }
 
-.form-group small {
-    display: block;
-    margin-top: 5px;
+.edit-profile-card small {
     font-size: 12px;
-    color: #777;
+    color: #666;
 }
 
-.avatar-preview {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 2px solid #bdaaff;
+.profile-image-preview {
+    text-align: center;
+    margin-bottom: 20px;
 }
+
+.profile-image-preview img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #bdaaff;
+    margin-bottom: 10px;
+}
+
+.edit-btn-container {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.btn-edit {
+    background-color: #5b4bbe;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-edit:hover {
+    background-color: #4b3db2;
+}
+
+.edit-profile-card select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dcd0ff;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 16px;
+    color: #333;
+    appearance: none; /* Remove o estilo padrão */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><polygon fill="%235b4bbe" points="0,0 10,0 5,7"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+}
+

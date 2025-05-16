@@ -1,3 +1,26 @@
+<?php
+$controller = new \App\Controllers\DashboardController();
+$user = $controller->getUserInfo($_SESSION['user']['id']);
+if (empty($user['picture'])) {
+    $picture = "images/logo.jpg";
+} else {
+    $picture = $user['picture'];
+}
+if (!is_link($picture)) {
+    $picture = asset($picture);
+}
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $controller = new \App\Controllers\ProfileController();
+    $update = $controller->update($_FILES['avatar'], $_POST['name'], $_POST['email'], $_POST['password'], $_POST['gender'], $_POST['birthdate']);
+    if ($update["success"]) {
+        header( "Location: " . asset( "dashboard" ) );;
+    }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,50 +29,45 @@
     <link rel="stylesheet" href="<?= asset('css/edit-profile.css') ?>">
 </head>
 <body>
-<?php include_once 'components/header.php'; ?>
+<?php view('components/header') ?>
 
-<div class="container">
-    <div class="left-column">
-        <div class="card profile">
-            <form method="POST" action="/salvar-perfil" enctype="multipart/form-data">
-                <h2>Editar Perfil</h2>
+<div class="edit-profile-container">
+    <div class="edit-profile-card">
+        <h2>Editar Perfil</h2>
 
-                <div style="text-align: center;">
-                    <img src="/assets/img/avatar.png" alt="Foto de perfil" class="avatar-preview">
-                    <br><br>
-                    <input type="file" name="avatar" accept="image/*">
-                </div>
+        <form method="POST" action="edit" enctype="multipart/form-data">
+            <div class="profile-image-preview">
+                <img src="<?=$picture?>" alt="Avatar">
+                <input type="file" name="avatar" accept="image/*">
+            </div>
 
-                <div class="form-group">
-                    <label for="nome">Nome completo</label>
-                    <input type="text" name="nome" id="nome" value="João da Silva" required>
-                </div>
+            <label for="name">Nome completo</label>
+            <input type="text" id="name" name="name" value="<?= ucwords($user['name']) ?>" required>
 
-                <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input type="email" name="email" id="email" value="joao@email.com" required>
-                </div>
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" value="<?= $user['email'] ?>" required>
 
-                <div class="form-group">
-                    <label for="senha">Nova senha</label>
-                    <input type="password" name="senha" id="senha">
-                    <small>Deixe em branco para manter a senha atual</small>
-                </div>
+            <label for="password">Nova senha</label>
+            <input type="password" id="password" name="password">
+            <small>Deixe em branco para manter a senha atual</small>
 
-                <div class="edit-btn-container">
-                    <button type="submit" class="btn-edit">Salvar alterações</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="right-column">
-        <div class="card">
-            <h3>Dica:</h3>
-            <p>Manter seu perfil atualizado ajuda a personalizar melhor seu Plano de Vida.</p>
-        </div>
+            <label for="gender">Gênero</label>
+            <select id="gender" name="gender">
+                <option <?php if ($user['gender'] == "male") {echo "selected";} ?>>Masculino</option>
+                <option <?php if ($user['gender'] == "female") {echo "selected";} ?>>Feminino</option>
+                <option <?php if ($user['gender'] == "not-say") {echo "selected";} ?>>Prefiro não dizer</option>
+            </select>
+
+            <label for="birthdate">Data de nascimento</label>
+            <input type="date" id="birthdate" name="birthdate" value="<?= $user['birthdate'] ?>">
+
+            <div class="edit-btn-container">
+                <button type="submit" class="btn-edit">Salvar</button>
+            </div>
+        </form>
     </div>
 </div>
 
-<?php include_once 'components/footer.php'; ?>
+<?php view('components/footer'); ?>
 </body>
 </html>

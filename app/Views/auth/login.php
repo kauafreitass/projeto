@@ -6,7 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $controller = new AuthController();
     $controller->login($_POST['email'], $_POST['password']);;
-    header("Location: dashboard");
 }
 
 

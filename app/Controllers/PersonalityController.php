@@ -3,30 +3,26 @@
 namespace App\Controllers;
 
 use App\Middlewares\AuthMiddleware;
-use App\Models\DashboardModel;
+use App\Models\PersonalityModel;
 
-class DashboardController
+class PersonalityController
 {
-    public DashboardModel $model;
+    public PersonalityModel $model;
 
     public function __construct()
     {
         if (!isset($_SESSION['auth'])) {
             $_SESSION['auth'] = "notAuthenticated";
         }
-        $this->model = new DashboardModel();
+        $this->model = new PersonalityModel();
     }
 
     public function index()
     {
         AuthMiddleware::handle();
-        view('dashboard/index', [
-            'title' => 'Dashboard'
+        view('personality/index', [
+            'title' => 'Teste de personalidade'
         ]);
     }
 
-    public function getUserInfo($id)
-    {
-        return $this->model->getUserInfo($id);
-    }
 }

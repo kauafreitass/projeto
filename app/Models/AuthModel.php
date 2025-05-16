@@ -38,7 +38,7 @@ class AuthModel
             $user = $stmt->fetch(\PDO::FETCH_ASSOC);
 
             $_SESSION['user'] = $user;
-            $_SESSION['authenticated'] = 'authenticatedWithGoogle';
+            $_SESSION['auth'] = 'authenticated';
             header("Location: dashboard");
         }
 
@@ -47,7 +47,7 @@ class AuthModel
 
     public function storeAccount($name, $email, $password, $gender, $birthdate): void
     {
-        $password = password_hash($password, PASSWORD_DEFAULT);
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
         $sql = "INSERT INTO users (name, email, password, gender, birthdate, created_at, updated_at) 
         VALUES (:name, :email, :password, :gender, :birthdate, NOW(), NOW())";
@@ -55,20 +55,22 @@ class AuthModel
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':password', $password_hash);
         $stmt->bindParam(':gender', $gender);
         $stmt->bindParam(':birthdate', $birthdate);
         $stmt->execute();
+
+        $this->login($email, $password);
 
     }
 
     public function login($email, $password)
     {
+
         $sql = "SELECT id, email, password FROM users WHERE email = :email";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(['email' => $email]);
         $user = $stmt->fetch(\PDO::FETCH_ASSOC);
-
         if (!$user) {
             exit();
         } else {
@@ -82,6 +84,8 @@ class AuthModel
 
                 $_SESSION['user'] = $user;
                 $_SESSION['auth'] = 'authenticated';
+
+                header("Location: dashboard");;
             }
         }
     }

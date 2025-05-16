@@ -1,12 +1,13 @@
 <style>
     .footer {
         background-color: #2E1065;
-        padding: 16px;
+        padding: 20px;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
         width: 100%;
+        height: 150px;
         color: white;
         position: relative;
         bottom: 0;
