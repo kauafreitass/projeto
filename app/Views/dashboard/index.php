@@ -18,6 +18,8 @@ if (empty($user['picture'])) {
 } else {
     $picture = $user['picture'];
 }
+
+$user['birthdate'] = date("d/m/Y", strtotime($user['birthdate']));
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

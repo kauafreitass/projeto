@@ -89,6 +89,10 @@ $login = asset("login");
         </div>
         <div>
 
+            <a href="multiple-intelligences"><i class="fa-solid fa-share-nodes" style="color: #ffffff;"></i> Teste de múltiplas inteligências</a>
+        </div>
+        <div>
+
             <a href="#"><i class="fa-solid fa-clipboard-list" style="color: #ffffff;"></i> Planejamento</a>
         </div>
         <?php

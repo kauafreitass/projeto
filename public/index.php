@@ -42,3 +42,4 @@ Router::get('/profile/edit', [ProfileController::class, 'edit']);;
 
 Router::get('/personality', [PersonalityController::class, 'index']);;
 
+Router::get('/multiple-intelligences', [PersonalityController::class, 'multipleIntelligences']);;;

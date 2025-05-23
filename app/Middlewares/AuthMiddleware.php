@@ -9,7 +9,8 @@ class AuthMiddleware
 //        session_start();
 
         if (!isset($_SESSION['user'])) {
-            header('Location: login');
+            $login = asset("login");
+            header("Location: $login");
             exit;
         }
     }

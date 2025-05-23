@@ -4,6 +4,7 @@
 namespace App\Models;
 
 use Database\Database;
+use PDO;
 
 class ProfileModel
 {
@@ -81,6 +82,18 @@ class ProfileModel
         }
     }
 
+    public function getById($id)
+    {
+        $sql = "SELECT * FROM users WHERE id = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$id]);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (empty($result)) {
+            return [];
+        } else {
+            return $result[0];
+        }
+    }
 
 
 }

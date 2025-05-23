@@ -17,8 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         header( "Location: " . asset( "dashboard" ) );;
     }
 }
-
-
 ?>
 
 <!DOCTYPE html>

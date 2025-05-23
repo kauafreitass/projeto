@@ -25,4 +25,11 @@ class PersonalityController
         ]);
     }
 
+    public function multipleIntelligences() {
+        AuthMiddleware::handle();
+        view('multiple-intelligences/index', []);
+    }
+
+
+
 }
