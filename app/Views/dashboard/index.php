@@ -1,5 +1,4 @@
 <?php
-include 'data.php';
 $controller = new \App\Controllers\DashboardController();
 $user = $controller->getUserInfo($_SESSION['user']['id']);
 
@@ -18,8 +17,43 @@ if (empty($user['picture'])) {
 } else {
     $picture = $user['picture'];
 }
+if ($user['birthdate'] == null) {
+    $user['birthdate'] = "Não informado";
+} else {
+    $user['birthdate'] = date("d/m/Y", strtotime($user['birthdate']));
+}
+if (!empty($user['intelligences'])) {
+    $inteligencias = json_decode($user['intelligences']);
+}
 
-$user['birthdate'] = date("d/m/Y", strtotime($user['birthdate']));
+$mbtiFeito = !empty($user['mbti_type']);
+$inteligenciasFeito = !empty($user['intelligences']);
+
+if ($mbtiFeito && $inteligenciasFeito) {
+    $progresso = 100;
+} elseif ($mbtiFeito || $inteligenciasFeito) {
+    $progresso = 50;
+} else {
+    $progresso = 0;
+}
+
+$fields = [
+    'about_me' => 'Sobre Mim',
+    'memories' => 'Minhas Lembranças',
+    'strengths' => 'Pontos Fortes',
+    'weaknesses' => 'Pontos Fracos',
+    'values' => 'Meus Valores',
+    'aptitudes' => 'Minhas Aptidões',
+    'relationships' => 'Relacionamentos',
+    'daily_life' => 'Meu Dia a Dia',
+    'school_life' => 'Vida Escolar',
+    'self_view' => 'Minha Visão Sobre Mim',
+    'others_view' => 'Visão dos Outros Sobre Mim',
+    'self_esteem' => 'Autovalorização',
+];
+$filledFields = array_filter($fields, function ($key) use ($user) {
+    return !empty(trim($user[$key] ?? ''));
+}, ARRAY_FILTER_USE_KEY);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -43,6 +77,19 @@ $user['birthdate'] = date("d/m/Y", strtotime($user['birthdate']));
                 </a></div>
         </div>
 
+        <?php if ($filledFields): ?>
+            <div class="card">
+
+                <h2>Quem Sou Eu?</h2>
+                <?php foreach ($filledFields as $key => $label): ?>
+                    <p><strong><?= $label ?>:</strong> <?= htmlspecialchars($user[$key]) ?></p>
+                <?php endforeach; ?>
+                <div class="edit-btn-container"><a href="profile/who-iam">
+                        <button class="btn-edit"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
+                    </a></div>
+            </div>
+        <?php endif; ?>
+
         <div class="card">
             <h3>Progresso do Plano de Ação</h3>
             <div class="progress-bar">
@@ -53,25 +100,42 @@ $user['birthdate'] = date("d/m/Y", strtotime($user['birthdate']));
         <div class="card">
             <h3>Próximas Tarefas</h3>
             <ul>
-                <?php foreach ($tarefas as $tarefa): ?>
-                    <li><strong><?= $tarefa['data'] ?>:</strong> <?= $tarefa['descricao'] ?></li>
-                <?php endforeach; ?>
+                <?php if (!$mbtiFeito): ?>
+                    <li><strong><?= date('d/m/Y') ?>:</strong> Realizar o teste de personalidade MBTI</li>
+                <?php endif; ?>
+                <?php if (!$inteligenciasFeito): ?>
+                    <li><strong><?= date('d/m/Y') ?>:</strong> Realizar o teste de Inteligências Múltiplas</li>
+                <?php endif; ?>
             </ul>
         </div>
     </section>
 
     <section class="right-column">
         <div class="card">
-            <h3>Resumo dos Testes</h3>
-            <?php foreach ($testes as $teste): ?>
-                <p><strong><?= $teste['nome'] ?>:</strong> <?= $teste['resultado'] ?></p>
-            <?php endforeach; ?>
+            <h1>Resumo dos Testes</h1>
+            <h3>Teste de personalidade</h3>
+            <p><strong>Personalidade:</strong> <?= $user['mbti_type'] ?? 'Não concluído' ?></p>
+            <p><strong>Descrição:</strong> <?= $user['mbti_description'] ?? 'Não concluído' ?></p>
+            <br>
+            <p><strong>Inteligências Múltiplas:</strong>
+                <?php
+                if (!empty($user['intelligences'])) {
+                    $intelligences = json_decode($user['intelligences'], true);
+                    echo implode(', ', array_keys(array_filter($intelligences, function ($score) {
+                        return $score > 0;
+                    })));
+                } else {
+                    echo 'Não concluído';
+                }
+                ?>
+            </p>
         </div>
 
         <div class="card">
             <h3>Frases e Pensamentos</h3>
             <?php include 'frase.php'; ?>
         </div>
+
     </section>
 </main>
 

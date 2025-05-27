@@ -26,6 +26,14 @@ class ProfileController
         ]);
     }
 
+    public function whoIam(): void
+    {
+        AuthMiddleware::handle();
+        view('profile/who-iam', [
+            'title' => 'Quem sou eu?'
+        ]);
+    }
+
     public function update($avatar, $name, $email, $password, $gender, $birthdate): array
     {
         return $this->model->update($avatar, $name, $email, $password, $gender, $birthdate);
@@ -35,6 +43,19 @@ class ProfileController
         return $this->model->getById($id);
     }
 
+    public function updateMbtiResults($userId, $mbtiType, $mbtiDescription, $mbtiScores): void
+    {
+        $this->model->updateMbtiResults($userId, $mbtiType, $mbtiDescription, $mbtiScores);
+    }
 
+    public function updateIntelligences($userId, array $scores): void
+    {
+        $this->model->updateIntelligences($userId, $scores);
+    }
+
+    public function updateWhoIam(mixed $id, array $data): void
+    {
+        $this->model->updateWhoIam($id, $data);
+    }
 
 }

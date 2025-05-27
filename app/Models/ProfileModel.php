@@ -95,5 +95,53 @@ class ProfileModel
         }
     }
 
+    public function updateMbtiResults($userId, $mbtiType, $mbtiDescription, $mbtiScores)
+    {
+        $sql = "UPDATE users SET mbti_type = :mbti_type, mbti_description = :mbti_description, mbti_scores = :mbti_scores WHERE id = :user_id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':mbti_type', $mbtiType);
+        $stmt->bindParam(':mbti_description', $mbtiDescription);
+        $stmt->bindParam(':mbti_scores', $mbtiScores);
+        $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
+    public function updateIntelligences($userId, array $scores): bool
+    {
+        $sql = "UPDATE users SET intelligences = :scores WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute([
+            ':scores' => json_encode($scores),
+            ':id' => $userId
+        ]);
+    }
+
+    public function updateWhoIam(mixed $id, array $data)
+    {
+        // Remove campos vazios ou nulos
+        $filteredData = array_filter($data, function ($value) {
+            return $value !== null && $value !== '';
+        });
+
+        // Adiciona o ID ao array de dados
+        $filteredData['id'] = $id;
+
+        // Constrói dinamicamente a cláusula SET
+        $setClause = implode(', ', array_map(function ($field) {
+            return "$field = :$field";
+        }, array_keys($filteredData)));
+
+        // Prepara a instrução SQL
+        $sql = "UPDATE users SET $setClause WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+
+        // Executa a instrução com os dados fornecidos
+
+        $stmt->execute($filteredData);
+        $dashboard = asset("dashboard");
+        header("Location: $dashboard");;
+    }
+
+
 
 }

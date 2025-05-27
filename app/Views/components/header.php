@@ -1,15 +1,16 @@
 <?php
-if(isset($_SESSION['user'])) {
+if (isset($_SESSION['user'])) {
     $controller = new \App\Controllers\DashboardController();
     $user = $controller->getUserInfo($_SESSION['user']['id']);
 }
+
 if (empty($user['picture'])) {
     $picture = "images/logo.jpg";
 } else {
     $picture = $user['picture'];
 }
 
-if (!is_link($picture)) {
+if (!str_starts_with($picture, "http")) {
     $picture = asset($picture);
 }
 $dashboard = asset("dashboard");
@@ -69,31 +70,44 @@ $login = asset("login");
     .logo-link {
         text-decoration: none;
     }
+
+    .links {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .links a, i {
+        margin: 0;
+    }
 </style>
 
 <header>
-    <a href="<?= asset("home");?>" class="logo-link">
+    <a href="<?= asset("home"); ?>" class="logo-link">
         <div class="header-title">
             <p>Projeto</p>
             <p>de vida</p>
         </div>
     </a>
     <nav class="navegation-links">
-        <div>
-
-            <a href="#"><i class="fa-solid fa-suitcase" style="color: #ffffff;"></i> Profissão</a>
+        <div class="links">
+            <i class="fa-solid fa-suitcase" style="color: #ffffff;"></i>
+            <a href="career">Carreira</a>
         </div>
-        <div>
-
-            <a href="personality"><i class="fa-solid fa-share-nodes" style="color: #ffffff;"></i> Teste de personalidade</a>
+        <div class="links">
+            <i class="fa-solid fa-share-nodes" style="color: #ffffff;"></i>
+            <a href="personality">Teste de personalidade</a>
         </div>
-        <div>
-
-            <a href="multiple-intelligences"><i class="fa-solid fa-share-nodes" style="color: #ffffff;"></i> Teste de múltiplas inteligências</a>
+        <div class="links">
+            <i class="fa-solid fa-share-nodes" style="color: #ffffff;"></i>
+            <a href="multiple-intelligences">Teste de
+                múltiplas inteligências</a>
         </div>
-        <div>
-
-            <a href="#"><i class="fa-solid fa-clipboard-list" style="color: #ffffff;"></i> Planejamento</a>
+        <div class="links">
+            <i class="fa-solid fa-user" style="color: #ffffff;"></i>
+            <a href="profile/who-iam">Sobre</a>
         </div>
         <?php
         if ($_SESSION['auth'] == 'authenticated') {

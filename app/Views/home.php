@@ -57,7 +57,7 @@ if (!isset($_SESSION['auth'])) {
                     </span>
                 </div>
                 <div class="personality-link">
-                    <a href="#">
+                    <a href="personality">
                         <button class="personality-button">Iniciar teste</button>
                     </a>
                 </div>
