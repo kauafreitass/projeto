@@ -37,7 +37,7 @@ body {
     background-color: #FFFFFF;
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid #8B5CF6;
+    border: 1px solidrgb(246, 92, 92);
     height: fit-content;
     width: 450px;
 }
@@ -92,7 +92,7 @@ body {
 }
 
 .btn-login {
-    background-color: #2E1065;
+    background-color:rgb(101, 16, 16);
     color: #fff;
     border: none;
     outline: none;
@@ -106,7 +106,7 @@ body {
 
 .btn-google {
     background-color: #F5F5F5;
-    color: #8B5CF6;
+    color:rgb(246, 92, 92);
     border: none;
     outline: none;
     padding: 8px;
@@ -126,7 +126,7 @@ body {
 }
 
 .sign-up-href {
-    color: #2E1065;
+    color:rgb(101, 16, 16);
     margin-top: 12px;
     font-size: 14px;
 }

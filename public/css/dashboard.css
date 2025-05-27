@@ -15,17 +15,17 @@ header {
 }
 
 header h1 {
-    color: #5b4bbe;
+    color: #be4b4b;
 }
 
 header h1 span {
-    color: #bdaaff;
+    color: #ffaaaa;
 }
 
 nav a {
     margin-left: 15px;
     text-decoration: none;
-    color: #5b4bbe;
+    color: #be4b4b;
 }
 
 .container {
@@ -61,7 +61,7 @@ nav a {
 }
 
 .progress-bar div {
-    background-color: #5b4bbe;
+    background-color: #be4b4b;
     color: white;
     text-align: center;
     padding: 5px 0;
@@ -80,7 +80,7 @@ nav a {
 }
 
 .btn-edit {
-    background-color: #8B5CF6;
+    background-color: #f65c5c;
     border: none;
     outline: none;
     border-radius: 10px;
@@ -97,7 +97,7 @@ nav a {
 }
 
 footer {
-    background-color: #5b4bbe;
+    background-color: #be4b4b;
     color: white;
     text-align: center;
     padding: 10px;

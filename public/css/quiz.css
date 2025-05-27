@@ -17,7 +17,7 @@ h1 {
     font-size: 2em; /* Tamanho do título */
 }
 h2 {
-    color: #5b4bbe;
+    color: #be4b4b;
     text-align: center;
     margin-top: 20px;
     margin-bottom: 10px;
@@ -67,7 +67,7 @@ hr {
 }
 
 .pergunta label:hover {
-    border-color: #a0a0ff; /* Cor da borda ao passar o mouse */
+    border-color: #ffa0a0; /* Cor da borda ao passar o mouse */
     background-color: #f0f0ff; /* Fundo leve ao passar o mouse */
     box-shadow: 0 4px 12px rgba(0, 123, 255, 0.1); /* Sombra ao passar o mouse */
 }
@@ -89,8 +89,8 @@ hr {
 
 /* Estilo do círculo interno quando o rádio está selecionado */
 .pergunta input[type="radio"]:checked {
-    background-color: #5b4bbe; /* Cor de preenchimento do círculo */
-    border-color: #5b4bbe; /* Borda da mesma cor */
+    background-color: #be4b4b; /* Cor de preenchimento do círculo */
+    border-color: #be4b4b; /* Borda da mesma cor */
 }
 
 .pergunta input[type="radio"]:checked::after {
@@ -108,16 +108,16 @@ hr {
 
 /* Estilo da label quando o rádio está selecionado */
 .pergunta input[type="radio"]:checked ~ label {
-    border-color: #5b4bbe;
+    border-color: #be4b4b;
     background-color: #e6e6ff;
     color: #333;
-    box-shadow: 0 4px 15px rgba(91, 75, 190, 0.2);
+    box-shadow: 0 4px 15px rgba(190, 75, 75, 0.2);
 }
 
 button[type="submit"], [type="button"] {
     background-color: #fff;
     color: black;
-    border: 1px solid #5b4bbe;
+    border: 1px solid #be4b4b;
     padding: 12px 25px;
     border-radius: 10px;
     cursor: pointer;
@@ -128,7 +128,7 @@ button[type="submit"], [type="button"] {
     position: relative; /* Essencial para posicionar o pseudo-elemento */
     overflow: hidden; /* Corta o pseudo-elemento que está crescendo */
     transition: color 0.3s ease, box-shadow 0.3s ease; /* Transição para a cor do texto e sombra */
-    box-shadow: 0 4px 10px rgba(91, 75, 190, 0.3);
+    box-shadow: 0 4px 10px rgba(190, 75, 75, 0.3);
     z-index: 1; /* Garante que o texto fique acima do pseudo-elemento */
 }
 
@@ -141,7 +141,7 @@ button[type="submit"]::before, [type="button"]::before {
     border-radius: 30px;
     width: 100%; /* Define a largura total para que a escala funcione sobre ela */
     height: 100%;
-    background-color: #4a3e9c; /* Cor de preenchimento do hover */
+    background-color: #9c3e3e; /* Cor de preenchimento do hover */
     /* A chave: começa escalado para 0 na horizontal e transladado para o centro */
     transform: translateX(-50%) scaleX(0);
     transition: transform 0.3s ease; /* Anima a propriedade transform */
@@ -150,7 +150,7 @@ button[type="submit"]::before, [type="button"]::before {
 
 button[type="submit"]:hover, [type="button"]:hover {
     color: white; /* Cor do texto muda para branco no hover */
-    box-shadow: 0 6px 15px rgba(91, 75, 190, 0.4);
+    box-shadow: 0 6px 15px rgba(190, 75, 75, 0.4);
     /* Se quiser reativar o efeito de "levantar" */
     /* transform: translateY(-2px); */
 }

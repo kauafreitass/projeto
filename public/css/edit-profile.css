@@ -16,7 +16,7 @@
 }
 
 .edit-profile-card h2 {
-    color: #5b4bbe;
+    color: #be4b4b;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -26,7 +26,7 @@
     margin-top: 15px;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #5b4bbe;
+    color: #be4b4b;
 }
 
 .edit-profile-card input[type="text"],
@@ -37,7 +37,7 @@
 {
     width: 100%;
     padding: 10px;
-    border: 1px solid #dcd0ff;
+    border: 1px solid #ffd0d0;
     border-radius: 8px;
     font-size: 16px;
     margin-bottom: 5px;
@@ -58,7 +58,7 @@
     height: 90px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #bdaaff;
+    border: 2px solid #ffaaaa;
     margin-bottom: 10px;
 }
 
@@ -68,7 +68,7 @@
 }
 
 .btn-edit {
-    background-color: #5b4bbe;
+    background-color: #be4b4b;
     border: none;
     color: white;
     padding: 12px 30px;
@@ -80,13 +80,13 @@
 }
 
 .btn-edit:hover {
-    background-color: #4b3db2;
+    background-color: #b23d3d;
 }
 
 .edit-profile-card select {
     width: 100%;
     padding: 10px;
-    border: 1px solid #dcd0ff;
+    border: 1px solid #ffd0d0;
     border-radius: 8px;
     background-color: white;
     font-size: 16px;

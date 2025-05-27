@@ -29,7 +29,7 @@ main {
     width: 100vw;
     padding: 8px;
     font-size: 24px;
-    color: #2E1065;
+    color: #651010;
 }
 
 .container-photo {
@@ -53,7 +53,7 @@ main {
     margin: 60px;
     width: 50%;
     height: 1px;
-    background: #7C3AED;
+    background: #ed3a3a;
 }
 
 .personality-box {
@@ -71,14 +71,14 @@ main {
 }
 
 .personality-title {
-    color: #2E1065;
+    color: #651010;
     text-align: start;
     width: 100%;
 }
 
 .personality-button {
     border: none;
-    background-color: #2E1065;
+    background-color: #651010;
     padding: 12px;
     color: white;
     border-radius: 12px;
