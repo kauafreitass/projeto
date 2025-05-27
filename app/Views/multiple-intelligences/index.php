@@ -24,6 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $mostrarResultado = true;
+
+    $controller = new \App\Controllers\ProfileController();
+    $controller->updateIntelligences($_SESSION['user']['id'], $inteligencias );;
 }
 ?>
 

@@ -44,6 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $descricao = $descricoes[$tipo] ?? 'Tipo de personalidade não reconhecido.';
     $mostrarResultado = true;
+
+    $dimensoes = json_encode($dimensoes);
+    $controller = new \App\Controllers\ProfileController();
+    $controller->updateMbtiResults($_SESSION['user']['id'], $tipo, $descricao, $dimensoes);
 }
 ?>
 
@@ -68,24 +72,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <a href="personality">
             <button type="button">Refazer teste</button>
         </a>
+        <a href="dashboard">
+            <button type="button">Ver perfil</button>
+        </a>
         <script>
             const ctx = document.getElementById('graficoMBTI').getContext('2d');
             const graficoMBTI = new Chart(ctx, {
                 type: 'radar',
                 data: {
-                    labels: ['Extroversão (E)', 'Introversão (I)', 'Sensação (S)', 'Intuição (N)', 'Pensamento (T)', 'Sentimento (F)', 'Julgamento (J)', 'Percepção (P)'],
+                    labels: ['E', 'I', 'S', 'N', 'T', 'F', 'J', 'P'],
                     datasets: [{
                         label: 'Pontuação',
-                        data: [
-                            <?= $dimensoes['E'] ?>,
-                            <?= $dimensoes['I'] ?>,
-                            <?= $dimensoes['S'] ?>,
-                            <?= $dimensoes['N'] ?>,
-                            <?= $dimensoes['T'] ?>,
-                            <?= $dimensoes['F'] ?>,
-                            <?= $dimensoes['J'] ?>,
-                            <?= $dimensoes['P'] ?>
-                        ],
+                        data: [3, 5, 2, 6, 4, 1, 7, 3],
                         backgroundColor: 'rgba(91, 75, 190, 0.2)',
                         borderColor: 'rgba(91, 75, 190, 1)',
                         borderWidth: 2,
@@ -97,13 +95,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     scales: {
                         r: {
                             beginAtZero: true,
-                            suggestedMax: 15
+                            suggestedMax: 10
                         }
                     },
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Perfil de Personalidade MBTI'
+                            text: 'Perfil MBTI'
                         }
                     }
                 }

@@ -20,6 +20,8 @@ spl_autoload_register(function ($class) {
 
 Router::get('/', [HomeController::class, 'index']);
 Router::get('/home', [HomeController::class, 'index']);
+Router::get('/career', [HomeController::class, 'career']);
+
 // Auth
 
 Router::get('/login', [AuthController::class, 'showLogin']);
@@ -37,6 +39,8 @@ Router::get('/logout', [AuthController::class, 'showLogout']);
 Router::get('/dashboard', [DashboardController::class, 'index']);
 
 Router::get('/profile/edit', [ProfileController::class, 'edit']);;
+
+Router::get('/profile/who-iam', [ProfileController::class, 'whoIam']);;
 
 // Personality
 

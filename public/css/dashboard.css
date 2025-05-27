@@ -65,7 +65,8 @@ nav a {
     color: white;
     text-align: center;
     padding: 5px 0;
-    height: 20px;
+    height: 25px;
+    overflow: hidden;
 }
 
 .edit-btn-container {
